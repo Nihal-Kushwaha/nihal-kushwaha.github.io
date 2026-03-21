@@ -1,0 +1,1962 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nihal Kushwaha Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --bg-primary: #0a0a0f;
+      --bg-secondary: #12121a;
+      --text-primary: #ffffff;
+      --accent-primary: #6366f1;
+      --accent-secondary: #8b5cf6;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    
+    .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(99, 102, 241, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+    }
+    
+    .gradient-border {
+      position: relative;
+      background: var(--bg-secondary);
+      border-radius: 24px;
+    }
+    
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, #6366f1, #8b5cf6, #ec4899, #6366f1);
+      background-size: 300% 300%;
+      animation: gradientShift 4s ease infinite;
+      z-index: -1;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    .bounce-scroll {
+      animation: bounceScroll 2s ease-in-out infinite;
+    }
+    
+    @keyframes bounceScroll {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(12px); }
+    }
+    
+    .progress-bar {
+      height: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #6366f1, #8b5cf6);
+      transform-origin: left;
+      animation: fillProgress 1.5s ease-out forwards;
+    }
+    
+    @keyframes fillProgress {
+      from { transform: scaleX(0); }
+    }
+    
+    .carousel-container {
+      overflow: hidden;
+    }
+    
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .carousel-slide {
+      min-width: 100%;
+      padding: 0 12px;
+    }
+    
+    .testimonial-img {
+      filter: grayscale(100%);
+      transition: filter 0.4s ease;
+    }
+    
+    .testimonial-card:hover .testimonial-img {
+      filter: grayscale(0%);
+    }
+    
+    .glow-card {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .glow-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(99, 102, 241, 0.15), transparent 50%);
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+    
+    .glow-card:hover::after {
+      opacity: 1;
+    }
+    
+    .form-input {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px 20px;
+      color: white;
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    
+    .form-input:focus {
+      outline: none;
+      border-color: #6366f1;
+      background: rgba(99, 102, 241, 0.05);
+      box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+    }
+    
+    .form-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+    }
+    
+    .btn-primary:hover::before {
+      opacity: 1;
+    }
+    
+    .btn-primary span {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .social-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover {
+      transform: scale(1.1);
+      background: rgba(99, 102, 241, 0.2);
+      border-color: #6366f1;
+    }
+    
+    .social-icon svg {
+      transition: all 0.3s ease;
+    }
+    
+    .social-icon:hover svg {
+      fill: #6366f1;
+    }
+    
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .navbar-scrolled {
+      background: rgba(10, 10, 15, 0.8) !important;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .heart-beat {
+      animation: heartBeat 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+    
+    .stat-number {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.6);
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: linear-gradient(135deg, #6366f1, #8b5cf6);
+      border-color: transparent;
+      color: white;
+    }
+    
+    .nav-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .nav-dot.active {
+      background: #6366f1;
+      transform: scale(1.3);
+    }
+    
+    .alert {
+      padding: 16px 24px;
+      border-radius: 12px;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      animation: slideIn 0.3s ease;
+    }
+    
+    .alert.show {
+      display: flex;
+    }
+    
+    .alert-success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #22c55e;
+    }
+    
+    .alert-error {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #ef4444;
+    }
+    
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.3);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.5);
+    }
+    
+    .spinner {
+      width: 20px;
+      height: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }
+  
+      @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Project Card Animations */
+    .project-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 1;
+      transform: translateY(20px);
+    }
+
+    .reveal.active .project-card {
+      transform: translateY(0);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(99, 102, 241, 0.3);
+    }
+
+    /* Smooth filter animations */
+    .project-card {
+      transition: opacity 0.3s ease, transform 0.3s ease, display 0.3s ease;
+    }
+
+    /* Image hover effects */
+    .project-card img {
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Button hover effects */
+    .project-card a {
+      transition: all 0.3s ease;
+    }
+
+    .project-card a:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Grid layout adjustments */
+    @media (max-width: 768px) {
+      .project-card {
+        margin-bottom: 1.5rem;
+      }
+    }
+
+    /* Filter button animations */
+    .filter-btn {
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .filter-btn.active {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Stagger animation for project cards */
+    .reveal .project-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .reveal .project-card:nth-child(1) { animation-delay: 0.1s; }
+    .reveal .project-card:nth-child(2) { animation-delay: 0.2s; }
+    .reveal .project-card:nth-child(3) { animation-delay: 0.3s; }
+    .reveal .project-card:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Gradient borders for cards */
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, 
+        rgba(99, 102, 241, 0.2),
+        rgba(139, 92, 246, 0.2),
+        rgba(236, 72, 153, 0.2),
+        rgba(99, 102, 241, 0.2)
+      );
+      border-radius: 24px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+  </style></style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto relative"><!-- 3D Abstract Background -->
+   <div id="canvas-container" class="fixed inset-0 z-0 pointer-events-none" style="background: linear-gradient(135deg, #0a0a0f 0%, #1a0a2e 50%, #0f3460 100%);"></div>
+   <canvas id="bg-canvas" class="fixed inset-0 z-0 pointer-events-none"></canvas><!-- Content wrapper -->
+   <div class="relative z-10"><!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+     <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between"><a href="#" class="font-heading font-bold text-2xl"> <span class="text-white">Nihal Insights</span><span class="text-indigo-500">.</span> </a>
+       <div class="hidden md:flex items-center gap-8"><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a> <a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a> <a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a> <a href="#availability" class="text-gray-400 hover:text-white transition-colors">Availability</a> <a href="#contact" class="btn-primary text-sm py-3 px-6"><span>Contact</span></a>
+       </div><button id="mobile-menu-btn" class="md:hidden text-white">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16" />
+        </svg></button>
+      </div><!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 glass rounded-xl p-4">
+       <div class="flex flex-col gap-4"><a href="#about" class="text-gray-400 hover:text-white transition-colors py-2">About</a> <a href="#skills" class="text-gray-400 hover:text-white transition-colors py-2">Skills</a> <a href="#projects" class="text-gray-400 hover:text-white transition-colors py-2">Projects</a> <a href="#availability" class="text-gray-400 hover:text-white transition-colors py-2">Availability</a> <a href="#contact" class="btn-primary text-center py-3"><span>Contact</span></a>
+       </div>
+      </div>
+     </div>
+    </nav><!-- Hero Section -->
+<section id="hero" class="min-h-screen flex items-center justify-center relative px-6 pt-20">
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full blur-3xl"></div>
+  </div>
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <!-- Profile Photo Section -->
+    <div class="mb-12 flex justify-center">
+      <div id="profile-container" class="relative w-32 h-32 md:w-48 md:h-48 group">
+        <!-- Glowing border -->
+        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-pink-500 to-purple-400 p-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style="animation: pulse 3s ease-in-out infinite;">
+          <div class="w-full h-full rounded-full bg-gradient-to-br from-slate-900/50 to-slate-900/30"></div>
+        </div>
+        
+        <!-- Profile image -->
+        <div id="profile-photo" class="absolute inset-1 rounded-full bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center overflow-hidden transition-all duration-300" style="cursor: default;">
+          <!-- CHANGE THIS LINE: Add your image URL and change display to block -->
+          <img id="profile-image" src="images/pro.jpg" alt="Nihal Kushwaha" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+          
+          <!-- CHANGE THIS LINE: Add style="display: none;" -->
+          <div id="profile-placeholder" class="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-indigo-600 to-purple-600" style="display: none;">
+            <svg width="60" height="60" fill="none" stroke="white" stroke-width="1.5">
+              <circle cx="30" cy="20" r="10" />
+              <path d="M15 40c0-5 7-8 15-8s15 3 15 8v10H15V40z" />
+            </svg>
+            <p class="text-white text-xs mt-2">Add via edit panel</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="gradient-border inline-block px-6 py-2 mb-8"><span class="text-sm text-gray-300">✨ Open to Internships / Entry-Level Roles </span>
+      </div>
+      <h1 id="hero-name" class="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight">Hi, I'm <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">Nihal Kushwaha</span></h1>
+      <p id="hero-title" class="text-xl md:text-2xl text-gray-400 mb-4">Aspiring Data Scientist | Data Analyst </p>
+      <p id="hero-description" class="text-gray-500 max-w-2xl mx-auto mb-12 text-lg">Passionate about transforming data into actionable insights. Experienced in machine learning, data analysis, and statistical modeling. Let's uncover hidden patterns in your data.</p><!-- Stats -->
+      <div class="flex flex-wrap justify-center gap-8 mb-16">
+       <div class="text-center">
+        <div class="stat-number font-heading text-4xl font-bold">
+         15+
+        </div>
+        <div class="text-gray-500 text-sm mt-1">
+         Projects Completed
+        </div>
+       </div>
+       <div class="text-center">
+        <div class="stat-number font-heading text-4xl font-bold">
+         8+
+        </div>
+        <div class="text-gray-500 text-sm mt-1">
+         Datasets Analyzed
+        </div>
+       </div>
+       <div class="text-center">
+        <div class="stat-number font-heading text-4xl font-bold">
+         5
+        </div>
+        <div class="text-gray-500 text-sm mt-1">
+         ML Models Built
+        </div>
+       </div>
+      </div>
+      <div class="flex flex-wrap justify-center gap-4 mb-16"><a href="#projects" class="btn-primary"><span>View My Projects</span></a> <a href="#contact" class="px-8 py-4 rounded-xl border border-white/10 hover:border-cyan-500/50 hover:bg-white/5 transition-all"> Let's Connect </a>
+      </div>
+     </div>
+    </section>
+    <!-- About Section -->
+<section id="about" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="reveal">
+      <span class="text-indigo-400 font-medium mb-2 block">About Me</span>
+      <h2 class="font-heading text-4xl md:text-5xl font-bold mb-16">
+        Aspiring Data Scientist<br>
+        &amp; <span class="text-gray-500">Insight-Driven Problem Solver</span>
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-12">
+      <!-- Left Column -->
+      <div class="reveal">
+        <p id="about-text" class="text-gray-400 text-lg leading-relaxed mb-8">
+          I'm a dedicated data science professional focused on analyzing and interpreting data to uncover meaningful insights. My journey in data science began with a curiosity about how data drives decisions and reveals patterns, and has evolved into a strong interest in applying Python, statistics, machine learning, and data visualization to solve real-world problems.
+        </p>
+        <p class="text-gray-400 text-lg leading-relaxed mb-8">
+          When I’m not working with datasets, you’ll find me exploring new analytical tools, building data-driven projects, and strengthening my skills in SQL, Power BI, and machine learning techniques. I believe in continuous learning and pushing the boundaries of what’s possible through data-driven thinking and impactful insights.
+        </p>
+        
+        <!-- Download Resume Button -->
+        <a href="cv/Nihal-Kushwaha-CV.pdf" 
+           download="Nihal_Resume.pdf"
+           class="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition-all duration-300 hover-gradient hover:scale-105 w-full md:w-auto justify-center">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          <span>Download Resume</span>
+        </a>
+      </div>
+      
+      <!-- Right Column -->
+      <div class="space-y-4 reveal" style="transition-delay: 0.2s">
+        <!-- Academic Qualifications Card -->
+        <div class="glass-card rounded-2xl p-6 border-l-4 border-indigo-500">
+          <div class="flex items-start gap-4 mb-4">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0">
+              <svg width="24" height="24" fill="none" stroke="#6366f1" stroke-width="2">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-heading text-sm font-semibold text-indigo-400 uppercase tracking-wider mb-2">
+                Academic Qualifications
+              </h4>
+              <h3 class="font-heading text-xl font-bold text-white mb-2">
+                Bachelor of Science in Data Science
+              </h3>
+              <div class="inline-flex items-center gap-2 mb-4">
+                <span class="px-3 py-1 rounded-full bg-gradient-to-r from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 text-indigo-400 text-xs font-medium">
+                  🎓 Expected Completion: 2027
+                </span>
+              </div>
+              <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                It's all about using data to solve real-world problems and support better decisions. 
+                I chose this field because I enjoy analyzing data, discovering patterns, and turning numbers into insights.
+                My work includes end-to-end machine learning projects using Python, data visualization with Power BI and other analytical technologies.
+              </p>
+              <!-- Skills Grid -->
+              <div class="flex flex-wrap gap-3 mt-4">
+                <div class="px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 hover:border-cyan-400 transition-all group">
+                  <span class="text-cyan-400 font-medium text-sm group-hover:text-cyan-300">Python</span>
+                  <span class="ml-2 text-cyan-500/60 text-xs">●</span>
+                </div>
+                <div class="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 hover:border-blue-400 transition-all group">
+                  <span class="text-blue-400 font-medium text-sm group-hover:text-blue-300">Data Analysis</span>
+                  <span class="ml-2 text-blue-500/60 text-xs">●</span>
+                </div>
+                <div class="px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/30 hover:border-purple-400 transition-all group">
+                  <span class="text-purple-400 font-medium text-sm group-hover:text-purple-300">EDA</span>
+                  <span class="ml-2 text-purple-500/60 text-xs">●</span>
+                </div>
+                <div class="px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 hover:border-green-400 transition-all group">
+                  <span class="text-green-400 font-medium text-sm group-hover:text-green-300">Power BI</span>
+                  <span class="ml-2 text-green-500/60 text-xs">●</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Experience Card -->
+        <div class="glass-card rounded-xl p-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <svg width="24" height="24" fill="none" stroke="#8b5cf6" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 3h-8l-2 4h12l-2-4z" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-semibold">Experience</div>
+              <div class="text-gray-500 text-sm">Academic Projects & Hands-on Learning</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tech Stack Card -->
+        <div class="glass-card rounded-xl p-6">
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-lg bg-pink-500/20 flex items-center justify-center">
+              <svg width="24" height="24" fill="none" stroke="#ec4899" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+              </svg>
+            </div>
+            <div>
+              <div class="font-semibold">Tech Stack</div>
+              <div class="text-gray-500 text-sm">Python, SQL, MongoDB, Power BI, ML</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tech Badges -->
+        <div class="flex flex-wrap gap-2 mt-6">
+          <span class="px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20 text-cyan-400 text-sm">
+            Python
+          </span>
+          <span class="px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-blue-500/5 border border-blue-500/20 text-blue-400 text-sm">
+            SQL
+          </span>
+          <span class="px-4 py-2 rounded-full bg-gradient-to-r from-green-500/10 to-green-500/5 border border-green-500/20 text-green-400 text-sm">
+            Power BI
+          </span>
+          <span class="px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-purple-500/5 border border-purple-500/20 text-purple-400 text-sm">
+            Machine Learning
+          </span>
+          <span class="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500/10 to-yellow-500/5 border border-yellow-500/20 text-yellow-400 text-sm">
+            Statistics
+          </span>
+          <span class="px-4 py-2 rounded-full bg-gradient-to-r from-red-500/10 to-red-500/5 border border-red-500/20 text-red-400 text-sm">
+            Excel
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Skills Section -->
+<section id="skills" class="py-24 px-6 bg-gradient-to-b from-transparent via-indigo-950/10 to-transparent">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="text-indigo-400 font-medium mb-2 block">My Skills</span>
+      <h2 class="font-heading text-4xl md:text-5xl font-bold">Technical <span class="text-gray-500">Expertise</span></h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Specialized in data analysis, machine learning, and data visualization technologies</p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8">
+      
+      <!-- 1. Core Data Science -->
+      <div class="glass-card rounded-2xl p-8 reveal">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2">
+              <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold">Core Data Science</h3>
+        </div>
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Python Programming</span>
+              <span class="text-cyan-400">95%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 95%; background: linear-gradient(90deg, #06b6d4, #22d3ee)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Statistics & Mathematics</span>
+              <span class="text-cyan-400">88%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 88%; background: linear-gradient(90deg, #06b6d4, #22d3ee)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Exploratory Data Analysis</span>
+              <span class="text-cyan-400">92%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, #06b6d4, #22d3ee)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Feature Engineering</span>
+              <span class="text-cyan-400">85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, #06b6d4, #22d3ee)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-6">
+          <span class="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs">Hands-on</span>
+          <span class="text-gray-500 text-xs py-1">Academic Project Experience</span>
+        </div>
+      </div>
+      
+      <!-- 2. Machine Learning -->
+      <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.1s">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8b5cf6" stroke-width="2">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold">Machine Learning</h3>
+        </div>
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Scikit-learn</span>
+              <span class="text-purple-400">90%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 90%; background: linear-gradient(90deg, #8b5cf6, #a855f7)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Model Evaluation</span>
+              <span class="text-purple-400">88%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 88%; background: linear-gradient(90deg, #8b5cf6, #a855f7)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Regression & Classification</span>
+              <span class="text-purple-400">92%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, #8b5cf6, #a855f7)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Deep Learning Basics</span>
+              <span class="text-purple-400">75%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%; background: linear-gradient(90deg, #8b5cf6, #a855f7)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-6">
+          <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-xs">Hands-on</span>
+          <span class="text-gray-500 text-xs py-1">Academic Project Experience</span>
+        </div>
+      </div>
+      
+      <!-- 3. Data Visualization -->
+      <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.2s">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2">
+              <line x1="18" y1="20" x2="18" y2="10"></line>
+              <line x1="12" y1="20" x2="12" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold">Data Visualization</h3>
+        </div>
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Power BI</span>
+              <span class="text-green-400">92%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 92%; background: linear-gradient(90deg, #16a34a, #4ade80)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Matplotlib & Seaborn</span>
+              <span class="text-green-400">90%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 90%; background: linear-gradient(90deg, #16a34a, #4ade80)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Tableau</span>
+              <span class="text-green-400">85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, #16a34a, #4ade80)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Excel Dashboard</span>
+              <span class="text-green-400">88%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 88%; background: linear-gradient(90deg, #16a34a, #4ade80)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-6">
+          <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-xs">Hands-on</span>
+          <span class="text-gray-500 text-xs py-1">Academic Project Experience</span>
+        </div>
+      </div>
+      
+      <!-- 4. Database & Cloud -->
+      <div class="glass-card rounded-2xl p-8 reveal" style="transition-delay: 0.3s">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+            </svg>
+          </div>
+          <h3 class="font-heading text-xl font-semibold">Database & Cloud</h3>
+        </div>
+        <div class="space-y-5">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">SQL</span>
+              <span class="text-blue-400">90%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 90%; background: linear-gradient(90deg, #3b82f6, #60a5fa)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">MongoDB</span>
+              <span class="text-blue-400">85%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, #3b82f6, #60a5fa)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">AWS Basics</span>
+              <span class="text-blue-400">80%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 80%; background: linear-gradient(90deg, #3b82f6, #60a5fa)"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between mb-2">
+              <span class="text-gray-300">Pandas & NumPy</span>
+              <span class="text-blue-400">95%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 95%; background: linear-gradient(90deg, #3b82f6, #60a5fa)"></div>
+            </div>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-6">
+          <span class="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs">Hands-on</span>
+          <span class="text-gray-500 text-xs py-1">Academic Project Experience</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Additional Skills Row -->
+<div class="mt-12 reveal">
+  <h3 class="font-heading text-xl font-semibold text-center mb-6 text-gray-300">Additional Tools & Technologies</h3>
+  <div class="flex flex-wrap justify-center gap-3">
+    <span class="px-4 py-2 rounded-full bg-gray-800/50 text-gray-300 text-sm border border-gray-700/50 hover:bg-gray-700/50 hover:border-gray-600/50 hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer group">
+      <span class="group-hover:text-cyan-400 transition-colors">GitHub</span>
+    </span>
+    <span class="px-4 py-2 rounded-full bg-gray-800/50 text-gray-300 text-sm border border-gray-700/50 hover:bg-gray-700/50 hover:border-gray-600/50 hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer group">
+      <span class="group-hover:text-blue-400 transition-colors">Jupyter Notebooks</span>
+    </span>
+    <span class="px-4 py-2 rounded-full bg-gray-800/50 text-gray-300 text-sm border border-gray-700/50 hover:bg-gray-700/50 hover:border-gray-600/50 hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer group">
+      <span class="group-hover:text-green-400 transition-colors">Streamlit Apps</span>
+    </span>
+    <span class="px-4 py-2 rounded-full bg-gray-800/50 text-gray-300 text-sm border border-gray-700/50 hover:bg-gray-700/50 hover:border-gray-600/50 hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer group">
+      <span class="group-hover:text-purple-400 transition-colors">Excel Advanced</span>
+    </span>
+    <span class="px-4 py-2 rounded-full bg-gray-800/50 text-gray-300 text-sm border border-gray-700/50 hover:bg-gray-700/50 hover:border-gray-600/50 hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer group">
+      <span class="group-hover:text-yellow-400 transition-colors">Google Colab</span>
+    </span>
+    <span class="px-4 py-2 rounded-full bg-gray-800/50 text-gray-300 text-sm border border-gray-700/50 hover:bg-gray-700/50 hover:border-gray-600/50 hover:text-white hover:scale-105 transition-all duration-300 cursor-pointer group">
+      <span class="group-hover:text-pink-400 transition-colors">HTML/CSS Basics</span>
+    </span>
+  </div>
+</div>
+  </div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16 reveal">
+      <span class="text-indigo-400 font-medium mb-2 block">My Work</span>
+      <h2 class="font-heading text-4xl md:text-5xl font-bold">Featured <span class="text-gray-500">Projects</span></h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">Hands-on data science projects showcasing machine learning, NLP, and data visualization skills</p>
+    </div>
+
+    <!-- Project Filters -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12 reveal">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="ml">Machine Learning</button>
+      <button class="filter-btn" data-filter="dl">Deep Learning</button>
+      <button class="filter-btn" data-filter="dv">Data Visualization</button>
+      <button class="filter-btn" data-filter="nlp">NLP</button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 reveal">
+      
+      <!-- PROJECT 1: Road Accident Analysis -->
+      <div class="project-card glass-card rounded-2xl overflow-hidden" data-category="dv">
+        <div class="h-64 bg-gradient-to-br from-blue-600/30 to-cyan-600/30 relative overflow-hidden">
+          <img src="images/Road Accident.jpg" alt="Road Accident Analysis" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs">Power BI</div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-semibold mb-2">Road Accident Analysis</h3>
+          <p class="text-gray-400 text-sm mb-4">This Road Accident Analysis dashboard provides a comprehensive overview of accident and casualty trends across multiple dimensions such as year, vehicle type, weather conditions, road type, and area. It highlights key metrics including total accidents, fatalities, and severity levels, while visualizing patterns by month, day of the week, lighting conditions, and road surfaces. The dashboard enables users to identify high-risk factors and accident hotspots, supporting data-driven decisions for road safety improvement and policy planning.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Power BI</span>
+            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs">DAX</span>
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Data Visualization</span>
+          </div>
+          
+          <div class="flex gap-3">
+    <!-- GitHub Button -->
+    <a href="https://github.com/Nihal-Kushwaha/Business-Intelligence/blob/main/Road%20Accident%20Analysis.pbix" target="_blank" class="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-center text-sm transition-colors flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View File
+    </a>
+    
+    <!-- PDF Button -->
+    <a href="Pdf/Road Accident Analysis.pdf" target="_blank" class="flex-1 py-2 px-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg text-center text-sm text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <!-- Document Icon -->
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+            <path d="M8 12h8v2H8zm0 4h8v2H8zm0-8h3v2H8z"/>
+        </svg>
+        View PDF
+    </a>
+</div>
+        </div>
+      </div>
+
+      <!-- PROJECT 2: News Category Classification -->
+      <div class="project-card glass-card rounded-2xl overflow-hidden" data-category="nlp ">
+        <div class="h-64 bg-gradient-to-br from-indigo-600/30 to-purple-600/30 relative overflow-hidden">
+          <img src="images/news.jpg" alt="News Category Classification" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs">NLP</div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-semibold mb-2">News Category Classification</h3>
+          <p class="text-gray-400 text-sm mb-4">This project focuses on building a News Category Classification system that automatically classifies news articles into predefined categories using machine learning techniques. By applying text preprocessing, feature extraction, and supervised learning algorithms, the system is able to accurately predict the category of unseen news articles.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 rounded-full text-xs">Python</span>
+            <span class="px-3 py-1 bg-purple-500/20 text-purple-400 rounded-full text-xs">NLP</span>
+            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">TF-IDF</span>
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Logistic Regression</span>
+          </div>
+          
+          <div class="flex gap-3">
+    <!-- GitHub Button -->
+    <a href="https://github.com/Nihal-Kushwaha/News-Category-Classification/blob/main/News%20Category%20Classifisation.ipynb" target="_blank" class="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-center text-sm transition-colors flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View Code
+    </a>
+    
+    <!-- Live Demo Button -->
+    <a href="https://streamlit.app/" target="_blank" class="flex-1 py-2 px-4 bg-gradient-to-r from-indigo-500 to-red-600 rounded-lg text-center text-sm text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <!-- Streamlit -->
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.568 3.029c.477 0 .874.357.949.826l.009.143v15.981c0 .504-.377.923-.87.993l-.088.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.088-.007zm-6.59.002c.476 0 .873.356.949.825l.008.143v15.981c0 .504-.376.923-.87.993l-.087.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.087-.007zm-6.562 3.1c.477 0 .874.356.949.825l.009.143v12.881c0 .504-.377.923-.87.993l-.088.007c-.476 0-.873-.357-.949-.826l-.008-.143V7.127c0-.504.376-.923.87-.993l.087-.007z"/>
+        </svg>
+        Live Demo
+    </a>
+    </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 3: Language Detection -->
+      <div class="project-card glass-card rounded-2xl overflow-hidden" data-category="nlp">
+        <div class="h-64 bg-gradient-to-br from-pink-600/30 to-rose-600/30 relative overflow-hidden">
+          <img src="images/language.jpg" alt="Language Detection" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-pink-500/20 text-pink-400 text-xs">NLP</div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-semibold mb-2">Language Detection</h3>
+          <p class="text-gray-400 text-sm mb-4">n this project, a dataset containing 10,337 text samples across 17 languages was used to build a machine learning model for language detection. The workflow included data preprocessing, feature extraction, model training, and evaluation. A Naive Bayes classifier was chosen due to its efficiency and strong performance in text classification tasks.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full text-xs">Python</span>
+            <span class="px-3 py-1 bg-rose-500/20 text-rose-400 rounded-full text-xs">NLP</span>
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs">Naive Bayes</span>
+            <span class="px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-xs">Classification</span>
+          </div>
+          
+          <div class="flex gap-3">
+    <!-- GitHub Button -->
+    <a href="https://github.com/Nihal-Kushwaha/News-Category-Classification/blob/main/News%20Category%20Classifisation.ipynb" target="_blank" class="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-center text-sm transition-colors flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View Code
+    </a>
+    
+    <!-- Live Demo Button -->
+    <a href="https://streamlit.app/" target="_blank" class="flex-1 py-2 px-4 bg-gradient-to-r from-indigo-500 to-red-600 rounded-lg text-center text-sm text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <!-- Streamlit Logo -->
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.568 3.029c.477 0 .874.357.949.826l.009.143v15.981c0 .504-.377.923-.87.993l-.088.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.088-.007zm-6.59.002c.476 0 .873.356.949.825l.008.143v15.981c0 .504-.376.923-.87.993l-.087.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.087-.007zm-6.562 3.1c.477 0 .874.356.949.825l.009.143v12.881c0 .504-.377.923-.87.993l-.088.007c-.476 0-.873-.357-.949-.826l-.008-.143V7.127c0-.504.376-.923.87-.993l.087-.007z"/>
+        </svg>
+        Live Demo
+    </a>
+</div>
+        </div>
+      </div> 
+      <!-- PROJECT 4: Weekly Weather Insights  -->
+      <div class="project-card glass-card rounded-2xl overflow-hidden" data-category="dv">
+        <div class="h-64 bg-gradient-to-br from-blue-600/30 to-cyan-600/30 relative overflow-hidden">
+          <img src="images/Untitled design.jpg" alt="Weekly Weather Insights" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs">Power BI</div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-semibold mb-2">Weekly Weather Insights</h3>
+          <p class="text-gray-400 text-sm mb-4">This Power BI dashboard delivers comprehensive weekly weather insights across selected global cities.
+It visualizes trends in temperature, humidity, wind speed, air quality, visibility, and sunrise–sunset timings.
+Interactive visuals enable comparative analysis of weather conditions and pattern detection over time.
+The dashboard supports data-driven decision-making through clear, intuitive, and dynamic reporting.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Power BI</span>
+            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs">DAX</span>
+            <span class="px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full text-xs">Dashboard</span>
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Data Visualization</span>
+          </div>
+          
+          <div class="flex gap-3">
+    <!-- GitHub Button -->
+    <a href="https://github.com/Nihal-Kushwaha/Business-Intelligence/blob/main/Weekly%20Weather%20Insight.pbix" target="_blank" class="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-center text-sm transition-colors flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View File
+    </a>
+    
+    <!-- Live Demo Button -->
+    <a href="https://www.linkedin.com/posts/nihal-kushwaha-2b48a3312_dataanalytics-powerbi-dashboarddesign-activity-7383403855662907393-W64F?utm_source=share&utm_medium=member_android&rcm=ACoAAE-Cf-gBrU-wRzzMGJ-O34BtfwHnAbX8nv0" target="_blank" class="flex-1 py-2 px-4 bg-gradient-to-r from-indigo-500 to-green-600 rounded-lg text-center text-sm text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <!-- Logo -->
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.568 3.029c.477 0 .874.357.949.826l.009.143v15.981c0 .504-.377.923-.87.993l-.088.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.088-.007zm-6.59.002c.476 0 .873.356.949.825l.008.143v15.981c0 .504-.376.923-.87.993l-.087.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.087-.007zm-6.562 3.1c.477 0 .874.356.949.825l.009.143v12.881c0 .504-.377.923-.87.993l-.088.007c-.476 0-.873-.357-.949-.826l-.008-.143V7.127c0-.504.376-.923.87-.993l.087-.007z"/>
+        </svg>
+        Live Demo
+    </a>
+  </div>
+        </div>
+      </div>
+      <!-- PROJECT 5: Liver Disease Clinical Assessment System  -->
+      <div class="project-card glass-card rounded-2xl overflow-hidden" data-category="ml">
+        <div class="h-64 bg-gradient-to-br from-blue-600/30 to-cyan-600/30 relative overflow-hidden">
+          <img src="images/liver.jpg" alt="Liver Disease Clinical Assessment System" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-red-500/20 text-red-400 text-xs">Machine Learning</div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-semibold mb-2">Liver Disease Clinical Assessment System</h3>
+          <p class="text-gray-400 text-sm mb-4">The Liver Disease Clinical Assessment System is an AI‑powered tool that evaluates key clinical parameters such as bilirubin, enzymes, proteins, and albumin ratios. Using Gradient Boosting, it predicts liver disease risk, offering clear results and confidence scores for educational and research purposes only.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Pandas</span>
+            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Numpy</span>
+            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs">Matplotlib</span>
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Gradient Boosting</span>
+          </div>
+          
+          <div class="flex gap-3">
+    <!-- GitHub Button -->
+    <a href="https://github.com/Nihal-Kushwaha/Liver-Disease-Clinical-Assessment-System/blob/main/Liver_Disease_Pridection.ipynb" target="_blank" class="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-center text-sm transition-colors flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View Code
+    </a>
+    <!-- Live Demo Button -->
+    <a href="https://liver-disease-clinical-assessment-system.streamlit.app/" target="_blank" class="flex-1 py-2 px-4 bg-gradient-to-r from-indigo-500 to-red-600 rounded-lg text-center text-sm text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <!-- Streamlit -->
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.568 3.029c.477 0 .874.357.949.826l.009.143v15.981c0 .504-.377.923-.87.993l-.088.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.088-.007zm-6.59.002c.476 0 .873.356.949.825l.008.143v15.981c0 .504-.376.923-.87.993l-.087.007c-.477 0-.874-.357-.949-.826l-.009-.143V4.008c0-.504.377-.923.87-.993l.087-.007zm-6.562 3.1c.477 0 .874.356.949.825l.009.143v12.881c0 .504-.377.923-.87.993l-.088.007c-.476 0-.873-.357-.949-.826l-.008-.143V7.127c0-.504.376-.923.87-.993l.087-.007z"/>
+        </svg>
+        Live Demo
+    </a>
+  </div>
+        </div>
+      </div>
+
+      <!-- PROJECT 6: Social Media Mental Health Indicators  -->
+      <div class="project-card glass-card rounded-2xl overflow-hidden" data-category="dv">
+        <div class="h-64 bg-gradient-to-br from-blue-600/30 to-cyan-600/30 relative overflow-hidden">
+          <img src="images/social.jpg" alt="Social Media Mental Health Indicators" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs">Google Looker Studio</div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-semibold mb-2">Social Media Mental Health Indicators</h3>
+          <p class="text-gray-400 text-sm mb-4">This dashboard analyzes the impact of social media usage on mental health indicators such as sleep hours, anxiety levels, stress, and overall emotional well-being. It compares daily screen time, negative interactions, and mental states across different platforms and genders, helping to identify patterns that link excessive social media use with increased anxiety and stress levels.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">Google</span>
+            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-400 rounded-full text-xs">Looker Studio</span>
+            <span class="px-3 py-1 bg-pink-500/20 text-pink-400 rounded-full text-xs">Dashboard</span>
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Data Visualization</span>
+          </div>
+          
+          <div class="flex gap-3">
+    <!-- GitHub Button -->
+    <a href="https://github.com/Nihal-Kushwaha/Business-Intelligence/blob/main/Weekly%20Weather%20Insight.pbix" target="_blank" class="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-center text-sm transition-colors flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View File
+    </a>
+    
+    <!-- PDF Button -->
+    <a href="Pdf/Social Media Mental Health Indicators.pdf" target="_blank" class="flex-1 py-2 px-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg text-center text-sm text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <!-- PDF Document Icon -->
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+            <path d="M8 12h8v2H8zm0 4h8v2H8zm0-8h3v2H8z"/>
+        </svg>
+        View PDF
+    </a>
+  </div>
+        </div>
+      </div>
+      <!-- PROJECT 7: Grammatical Structure Analysis -->
+      <div class="project-card glass-card rounded-2xl overflow-hidden" data-category="nlp">
+        <div class="h-64 bg-gradient-to-br from-green-600/30 to-emerald-600/30 relative overflow-hidden">
+          <img src="images/Grammatical Structure Analysis.jpg" alt="Grammatical Structure Analysis" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+          <div class="absolute top-4 right-4 px-3 py-1 rounded-full bg-green-500/20 text-green-400 text-xs">NLP</div>
+        </div>
+        
+        <div class="p-6">
+          <h3 class="font-heading text-xl font-semibold mb-2">Grammatical Structure Analysis</h3>
+          <p class="text-gray-400 text-sm mb-4">This project focuses on Part-of-Speech (POS) tagging using Natural Language Processing techniques.
+It analyzes text data to assign grammatical tags and perform grammatical structure analysis of sentences.
+The model helps in understanding syntax, word relationships, and overall sentence formation.
+Built as an academic NLP project with practical implementation and clear results.</p>
+          
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span class="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs">Python</span>
+            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded-full text-xs">spaCy</span>
+            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-400 rounded-full text-xs">POS Tagging</span>
+            <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs">displaCy</span>
+          </div>
+          
+          <div class="flex gap-3">
+    <!-- GitHub Button -->
+    <a href="https://github.com/Nihal-Kushwaha/Grammatical-Structure-Analysis/blob/main/POS_Tagging_Project_Using_NLP.ipynb" target="_blank" class="flex-1 py-2 px-4 bg-gray-800 hover:bg-gray-700 rounded-lg text-center text-sm transition-colors flex items-center justify-center gap-2">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+        </svg>
+        View Code
+    </a>
+    
+    <!-- PDF Button -->
+    <a href="Pdf/POS-NLP-PROJECT.pdf" target="_blank" class="flex-1 py-2 px-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg text-center text-sm text-white hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+        <!-- PDF Document Icon -->
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/>
+            <path d="M8 12h8v2H8zm0 4h8v2H8zm0-8h3v2H8z"/>
+        </svg>
+        View PDF
+    </a>
+</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- Services Section -->
+    <section id="services" class="py-24 px-6 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent">
+     <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal"><span class="text-indigo-400 font-medium mb-2 block">What I Offer</span>
+       <h2 class="font-heading text-4xl md:text-5xl font-bold">Data-Driven <span class="text-gray-500">Solutions</span></h2>
+      </div><!-- Bento Grid -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Large Card -->
+       <div class="md:col-span-2 glass-card glow-card rounded-2xl p-8 reveal">
+        <div class="flex items-start gap-6">
+         <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+          <svg width="32" height="32" fill="white"><path d="M4 4h10v10H4V4zm14 0h10v10H18V4zM4 18h10v10H4V18zm14 4a6 6 0 1012 0 6 6 0 00-12 0z" />
+          </svg>
+         </div>
+         <div>
+          <h3 class="font-heading text-2xl font-semibold mb-3">Data Analysis & Insights</h3>
+          <p class="text-gray-400 mb-4">Transform raw data into meaningful insights using exploratory data analysis, statistical techniques, and visual storytelling to support data-driven decisions.</p>
+          <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-sm">Python</span> <span class="px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-sm">Pandas</span> <span class="px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-sm">NumPy</span> <span class="px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-sm">Matplotlib/Seaborn</span>
+          </div>
+         </div>
+        </div>
+       </div>
+       <!-- Small Card -->
+       <div class="glass-card glow-card rounded-2xl p-6 reveal" style="transition-delay: 0.1s">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-pink-500 to-rose-500 flex items-center justify-center mb-4">
+         <svg width="24" height="24" fill="white"><circle cx="12" cy="12" r="10" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-xl font-semibold mb-2">ML Modeling</h3>
+        <p class="text-gray-400 text-sm">Design, train, and evaluate machine learning models to solve classification, regression, and prediction problems with real-world datasets.</p>
+       </div><!-- Small Card -->
+       <div class="glass-card glow-card rounded-2xl p-6 reveal" style="transition-delay: 0.2s">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mb-4">
+         <svg width="24" height="24" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-xl font-semibold mb-2">Predictive Analytics</h3>
+        <p class="text-gray-400 text-sm"> </p>
+       </div>
+       <!-- Medium Card -->
+<div class="md:col-span-2 glass-card glow-card rounded-2xl p-6 reveal" style="transition-delay: 0.3s">
+    <div class="flex items-start gap-4">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center flex-shrink-0">
+            <!-- Data Visualization Icon (Chart/Graph) -->
+            <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                <path d="M3 3v16a2 2 0 0 0 2 2h16"/>
+                <path d="M7 14l3-3 3 3 5-5"/>
+                <path d="M18 3v4"/>
+                <path d="M21 7h-4"/>
+            </svg>
+        </div>
+        <div>
+            <h3 class="font-heading text-xl font-semibold mb-2">Data Visualization & Dashboard</h3>
+            <p class="text-gray-400 text-sm">Create interactive dashboards and visual reports that clearly communicate insights to both technical and non-technical stakeholders.</p>
+        </div>
+    </div>
+</div>
+<!-- Small Card -->
+       <div class="glass-card glow-card rounded-2xl p-6 reveal" style="transition-delay: 0.3s">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center mb-4">
+         <svg width="24" height="24" fill="white"><path d="M4 4h16v16H4V4zm4 4h8v8H8V8z" />
+         </svg>
+        </div>
+        <h3 class="font-heading text-xl font-semibold mb-2">Model Deployment & Automation</h3>
+        <p class="text-gray-400 text-sm">Deploy machine learning models as web applications using streamlit & GitHub , enabling real-time predictions and scalable solutions.</p>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- Availability Section -->
+    <section id="availability" class="py-24 px-6 bg-gradient-to-b from-transparent via-cyan-950/20 to-transparent">
+     <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 reveal"><span class="text-cyan-400 font-medium mb-2 block">My Status</span>
+       <h2 class="font-heading text-4xl md:text-5xl font-bold">I'm <span class="text-gray-500">Open to Work</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 mb-12"><!-- Available Status -->
+       <div class="glass-card rounded-2xl p-8 reveal border-l-4 border-cyan-500">
+        <div class="flex items-start gap-4 mb-6">
+         <div class="w-16 h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0 animate-pulse">
+          <svg width="32" height="32" fill="white"><circle cx="16" cy="16" r="12" />
+          </svg>
+         </div>
+         <div>
+          <h3 class="font-heading text-2xl font-semibold mb-1">Currently Available</h3>
+          <p class="text-cyan-400 text-sm font-medium">Ready to start immediately</p>
+         </div>
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed">I'm actively looking for opportunities in data science, machine learning, and analytics roles. Whether it's internships, contract work, or full-time positions, I'm ready to contribute and grow.</p>
+       </div><!-- Expertise Focus -->
+       <div class="glass-card rounded-2xl p-8 reveal border-l-4 border-blue-500" style="transition-delay: 0.1s">
+        <div class="flex items-start gap-4 mb-6">
+         <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center flex-shrink-0">
+          <svg width="32" height="32" fill="white"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+         </div>
+         <div>
+          <h3 class="font-heading text-2xl font-semibold mb-1">Focus Areas</h3>
+          <p class="text-blue-400 text-sm font-medium">Data Science &amp; ML</p>
+         </div>
+        </div>
+        <div class="space-y-2">
+         <p class="text-gray-400 text-sm">• Machine Learning Models</p>
+         <p class="text-gray-400 text-sm">• Data Analysis &amp; Visualization</p>
+         <p class="text-gray-400 text-sm">• Statistical Modeling</p>
+         <p class="text-gray-400 text-sm">• Python &amp; Data Frameworks</p>
+        </div>
+       </div>
+       <!-- Availability Type -->
+       <div class="glass-card rounded-2xl p-8 reveal border-l-4 border-purple-500" style="transition-delay: 0.2s">
+        <div class="flex items-start gap-4 mb-6">
+         <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+          <svg width="32" height="32" fill="white"><circle cx="8" cy="16" r="3" /> <circle cx="16" cy="16" r="3" /> <circle cx="24" cy="16" r="3" />
+          </svg>
+         </div>
+         <div>
+          <h3 class="font-heading text-2xl font-semibold mb-1">Work Type</h3>
+          <p class="text-purple-400 text-sm font-medium">Flexible Opportunities</p>
+         </div>
+        </div>
+        <div class="space-y-2">
+         <p class="text-gray-400 text-sm">• Full-time positions</p>
+         <p class="text-gray-400 text-sm">• Internships</p>
+         <p class="text-gray-400 text-sm">• Freelance projects</p>
+         <p class="text-gray-400 text-sm">• Remote work</p>
+        </div>
+       </div>
+      </div>
+      <!-- Call to Action -->
+      <div class="glass-card rounded-2xl p-12 text-center reveal border-t-2 border-cyan-500/30">
+       <h3 class="font-heading text-2xl md:text-3xl font-semibold mb-4">Ready to Collaborate?</h3>
+       <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Let's work together on exciting data science projects. Feel free to reach out with opportunities, questions, or just to say hello!</p><a href="#contact" class="btn-primary inline-block"><span>Get In Touch</span></a>
+      </div>
+     </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-gradient-to-b from-transparent via-slate-950/10 to-transparent">
+     <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16 reveal"><span class="text-cyan-400 font-medium mb-2 block">Get In Touch</span>
+       <h2 class="font-heading text-4xl md:text-5xl font-bold">Let's <span class="text-gray-500">Connect</span></h2>
+       <p class="text-gray-500 mt-4">Send me a message and I'll respond within 24 hours</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8 mb-12"><!-- Contact Form -->
+       <div class="glass-card rounded-2xl p-8 reveal border-l-4 border-cyan-500">
+        <form id="contact-form">
+         <div id="form-alert" class="alert mb-6"></div>
+         <div class="mb-6"><label for="name" class="block text-sm text-gray-400 mb-2">Name</label> <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+         </div>
+         <div class="mb-6"><label for="email" class="block text-sm text-gray-400 mb-2">Email Address</label> <input type="email" id="email" name="email" class="form-input" placeholder="your@gmail.com" required>
+         </div>
+         <div class="mb-6"><label for="message" class="block text-sm text-gray-400 mb-2">Your Message</label> <textarea id="message" name="message" rows="4" class="form-input resize-none" placeholder="Tell me about your project or inquiry..." required></textarea>
+         </div><button type="submit" id="submit-btn" class="btn-primary w-full"> <span id="btn-text">Send Message</span>
+          <div id="btn-spinner" class="spinner hidden mx-auto"></div></button>
+         <p class="text-xs text-gray-500 mt-4 text-center">Your message will be saved to my secure database</p>
+        </form>
+       </div><!-- Social Links -->
+<div class="flex flex-col items-center justify-center reveal space-y-8" style="transition-delay: 0.1s">
+  <div>
+    <h3 class="font-heading text-2xl font-semibold mb-4 text-center">Connect With Me</h3>
+    <p class="text-gray-500 text-center text-sm max-w-sm">Let's connect on social platforms to discuss data science, machine learning, and collaborative opportunities.</p>
+  </div>
+  
+  <!-- Animated Social Icons Grid -->
+  <div class="flex flex-wrap justify-center gap-6 mt-8">
+    
+    <!-- GitHub -->
+    <a href="https://github.com/Nihal-Kushwaha" target="_blank" rel="noopener noreferrer" class="group relative w-16 h-16 flex flex-col items-center justify-center transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-800 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
+      <svg width="32" height="32" fill="currentColor" class="relative text-gray-400 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+      </svg>
+      <span class="mt-2 text-xs text-gray-400 group-hover:text-white transition-colors">GitHub</span>
+    </a>
+    
+    <!-- LinkedIn -->
+    <a href="https://linkedin.com/in/nihal-kushwaha-2b48a3312/" target="_blank" rel="noopener noreferrer" class="group relative w-16 h-16 flex flex-col items-center justify-center transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
+      <svg width="32" height="32" fill="currentColor" class="relative text-gray-400 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+      </svg>
+      <span class="mt-2 text-xs text-gray-400 group-hover:text-white transition-colors">LinkedIn</span>
+    </a>
+    
+    <!-- Kaggle -->
+    <a href="https://www.kaggle.com/nihalkushwaha02" target="_blank" rel="noopener noreferrer" class="group relative w-16 h-16 flex flex-col items-center justify-center transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-cyan-800 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" class="relative text-gray-400 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+        <path d="M18.825 23.859c-.02.331.206.628.533.628.823 0 4.77-3.496 4.82-8.624.016-1.487-.167-2.965-.512-4.426.078-.502.078-1.252 0-1.754.346-1.461.528-2.939.512-4.426-.05-5.128-3.997-8.624-4.82-8.624-.327 0-.553.297-.533.628.015.197.015.394 0 .591v23.268c.015.197.015.394 0 .591zM0 4.947c.05 5.128 3.997 8.624 4.82 8.624h8.665c1.123 0 2.009-.906 2.009-1.998V1.998C15.494.906 14.608 0 13.485 0H4.82C3.997 0 .05 3.496 0 8.624v-3.677zm13.485 9.622H4.82c-.327 0-.553.297-.533.628.015.197.015.394 0 .591v7.667c.02.331.206.628.533.628.823 0 4.77-3.496 4.82-8.624h3.865v-0.29z" />
+      </svg>
+      <span class="mt-2 text-xs text-gray-400 group-hover:text-white transition-colors">Kaggle</span>
+    </a>
+    
+    <!-- YouTube -->
+    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="group relative w-16 h-16 flex flex-col items-center justify-center transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-red-600 to-red-800 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
+      <svg width="32" height="32" fill="currentColor" class="relative text-gray-400 group-hover:text-white transition-all duration-300 group-hover:scale-110">
+        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+      </svg>
+      <span class="mt-2 text-xs text-gray-400 group-hover:text-white transition-colors">YouTube</span>
+    </a>
+    
+    <!-- X (Twitter) -->
+    <a href="https://x.com/Nihalku02520085" target="_blank" rel="noopener noreferrer" class="group relative w-16 h-16 flex flex-col items-center justify-center transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg"></div>
+      <svg width="32" height="32" fill="currentColor" class="relative text-gray-400 group-hover:text-white transition-all duration-300 group-hover:scale-110" viewBox="0 0 24 24">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.654l-5.207-6.801-5.996 6.801H2.421l7.724-8.835L1.904 2.25h6.832l4.713 6.231 5.475-6.231zM17.15 18.75h1.827L6.883 3.75H5.04l12.11 15z" />
+      </svg>
+      <span class="mt-2 text-xs text-gray-400 group-hover:text-white transition-colors">X</span>
+    </a>
+  </div>
+    <!-- Quick Info -->
+        <div class="text-center pt-8 border-t border-white/10">
+         <p class="text-gray-400 text-sm mb-2">Available for collaborations &amp; opportunities</p>
+         <p class="text-cyan-400 text-sm font-medium">nihal.kushwaha@email.com</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/5">
+     <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-12"><!-- Brand -->
+       <div class="md:col-span-2"><a href="#" class="font-heading font-bold text-2xl inline-block mb-4"> <span class="text-white">Data | Insights | Solutions</span><span class="text-cyan-400">.</span> </a>
+        <p class="text-gray-500 mb-4 max-w-md">At the intersection of data and impact. My work is dedicated to transforming raw information into meaningful stories and solutions through machine learning, rigorous analysis, and a passion for intelligent systems.</p>
+       </div><!-- Quick Links -->
+       <div>
+        <h4 class="font-heading font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+         <li><a href="#about" class="text-gray-500 hover:text-white transition-colors text-sm">About</a></li>
+         <li><a href="#skills" class="text-gray-500 hover:text-white transition-colors text-sm">Skills</a></li>
+         <li><a href="#projects" class="text-gray-500 hover:text-white transition-colors text-sm">Projects</a></li>
+         <li><a href="#availability" class="text-gray-500 hover:text-white transition-colors text-sm">Availability</a></li>
+        </ul>
+       </div>
+       <!-- Contact -->
+       <div>
+        <h4 class="font-heading font-semibold mb-4">Contact</h4>
+        <ul class="space-y-2">
+         <li><a href="nihal.kr0227@gmail.com" class="text-gray-500 hover:text-white transition-colors text-sm">nihal.kr0227@gmail.com</a></li>
+         <li><span class="text-gray-500 text-sm">Noida, India</span></li>
+        </ul>
+       </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 text-center">
+       <p class="text-gray-500 text-sm">© 2026 Nihal Kushwaha. All rights reserved.</p>
+      </div>
+     </div>
+    </footer>
+   </div>
+  </div>
+  <script>
+    // 3D Abstract Background Animation
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let animationId;
+    let time = 0;
+
+    const particles = [];
+    const particleCount = 40;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.z = Math.random() * 100;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.vz = (Math.random() - 0.5) * 0.3;
+        this.size = Math.random() * 3 + 1;
+        this.opacity = Math.random() * 0.5 + 0.3;
+        this.hue = Math.random() * 60 + 200;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.z += this.vz;
+
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.z < 0 || this.z > 100) {
+          this.z = this.z < 0 ? 100 : 0;
+        }
+      }
+
+      draw() {
+        const scale = this.z / 100;
+        const size = this.size * scale;
+        const opacity = this.opacity * (1 - scale * 0.3);
+        
+        ctx.fillStyle = `hsla(${this.hue}, 100%, 60%, ${opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = `hsla(${this.hue}, 100%, 70%, ${opacity * 0.5})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function drawConnections() {
+      const connectionDistance = 200;
+      const connectionOpacity = 0.1;
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < connectionDistance) {
+            const opacity = (1 - distance / connectionDistance) * connectionOpacity;
+            const avgZ = (particles[i].z + particles[j].z) / 200;
+            ctx.strokeStyle = `hsla(240, 100%, 60%, ${opacity * avgZ})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function drawAbstractShapes() {
+      const time = Date.now() * 0.0001;
+
+      for (let i = 0; i < 3; i++) {
+        const centerX = canvas.width / 2 + Math.cos(time + i) * 200;
+        const centerY = canvas.height / 2 + Math.sin(time + i) * 200;
+        const radius = 50 + Math.sin(time * 2 + i) * 30;
+        const rotation = time + i;
+
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(rotation);
+        
+        ctx.strokeStyle = `hsla(${200 + i * 30}, 80%, 50%, 0.1)`;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(0, 0, radius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.rotate(time * 2);
+        ctx.strokeStyle = `hsla(${220 + i * 20}, 80%, 60%, 0.08)`;
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(-radius / 2, -radius / 2, radius, radius);
+        
+        ctx.restore();
+      }
+
+      for (let i = 0; i < 5; i++) {
+        const waveX = (time * 50 + i * 100) % canvas.width;
+        const waveHeight = Math.sin(time + i) * 30;
+        
+        ctx.strokeStyle = `hsla(${240 + i * 10}, 100%, ${50 + i * 5}%, 0.05)`;
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(waveX - 100, canvas.height / 2 + waveHeight);
+        ctx.quadraticCurveTo(waveX, canvas.height / 2 + waveHeight * 2, waveX + 100, canvas.height / 2 + waveHeight);
+        ctx.stroke();
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = 'rgba(10, 10, 15, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, 'rgba(10, 10, 15, 0)');
+      gradient.addColorStop(0.5, 'rgba(30, 20, 60, 0.02)');
+      gradient.addColorStop(1, 'rgba(15, 52, 96, 0)');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      drawConnections();
+      drawAbstractShapes();
+
+      time += 0.016;
+      animationId = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    animate();
+
+    // Configuration
+    const defaultConfig = {
+      profile_image_url: '',
+      hero_name: 'Nihal Kushwaha',
+      hero_title: 'Aspiring Data Scientist | Data Analyst',
+      hero_description: 'Passionate about transforming data into actionable insights. Experienced in machine learning, data analysis, and statistical modeling. Let\'s uncover hidden patterns in your data.',
+      about_text: "I'm a dedicated data science professional focused on analyzing and interpreting data to uncover meaningful insights. My journey in data science began with a curiosity about how data drives decisions and reveals patterns, and has evolved into a strong interest in applying Python, statistics, machine learning, and data visualization to solve real-world problems.",
+      contact_email: 'nihal.kr0227@gmail.com',
+      contact_location: 'Noida, India',
+      sheet_url: ''
+    };
+
+    let config = { ...defaultConfig };
+
+    function applyConfig() {
+      // Apply profile image
+      const profileImage = document.getElementById('profile-image');
+      const profilePlaceholder = document.getElementById('profile-placeholder');
+      
+      if (config.profile_image_url && config.profile_image_url.trim()) {
+        profileImage.src = config.profile_image_url;
+        profileImage.style.display = 'block';
+        profilePlaceholder.style.display = 'none';
+      } else {
+        profileImage.style.display = 'none';
+        profilePlaceholder.style.display = 'flex';
+      }
+
+      // Apply text content
+      const heroNameEl = document.getElementById('hero-name');
+      if (heroNameEl) {
+        heroNameEl.innerHTML = `Hi, I'm <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">${config.hero_name || defaultConfig.hero_name}</span>`;
+      }
+      
+      const heroTitleEl = document.getElementById('hero-title');
+      if (heroTitleEl) {
+        heroTitleEl.textContent = config.hero_title || defaultConfig.hero_title;
+      }
+      
+      const heroDescEl = document.getElementById('hero-description');
+      if (heroDescEl) {
+        heroDescEl.textContent = config.hero_description || defaultConfig.hero_description;
+      }
+      
+      const aboutTextEl = document.getElementById('about-text');
+if (aboutTextEl) {
+  // COMMENT OUT THIS LINE TO KEEP YOUR HTML TEXT
+  // aboutTextEl.textContent = config.about_text || defaultConfig.about_text;
+}
+    }
+
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    const app = document.getElementById('app');
+    
+    app.addEventListener('scroll', () => {
+      if (app.scrollTop > 50) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // Simple Project Filtering - NEW VERSION
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Update active button
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    
+    const filter = btn.dataset.filter;
+    
+    // Filter projects
+    projectCards.forEach(card => {
+      const categories = card.dataset.category.split(' ');
+      
+      if (filter === 'all' || categories.includes(filter)) {
+        card.style.display = 'block';
+        setTimeout(() => {
+          card.style.opacity = '1';
+        }, 100);
+      } else {
+        card.style.opacity = '0';
+        setTimeout(() => {
+          card.style.display = 'none';
+        }, 300);
+      }
+    });
+  });
+});
+
+// Keep the glow effect code (it can stay)
+document.querySelectorAll('.glow-card').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
+  });
+});
+
+    // Glow effect on cards
+    document.querySelectorAll('.glow-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
+      });
+    });
+
+    // Contact form
+    const contactForm = document.getElementById('contact-form');
+    const formAlert = document.getElementById('form-alert');
+    const submitBtn = document.getElementById('submit-btn');
+    const btnText = document.getElementById('btn-text');
+    const btnSpinner = document.getElementById('btn-spinner');
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      
+      if (!name || !email || !message) {
+        showAlert('Please fill in all fields', 'error');
+        return;
+      }
+      
+      if (!isValidEmail(email)) {
+        showAlert('Please enter a valid email address', 'error');
+        return;
+      }
+      
+      btnText.classList.add('hidden');
+      btnSpinner.classList.remove('hidden');
+      submitBtn.disabled = true;
+      
+      try {
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('message', message);
+        formData.append('timestamp', new Date().toLocaleString());
+
+        const scriptUrl = config.sheet_url || 'https://script.google.com/macros/s/AKfycbxqqXpuR6YSY1CqmJtNbbVxd9kIqY7-bDQCdNNj7fVrTATPXHPpU3aVwhS_dn11oGjCqQ/exec';
+        
+        const response = await fetch(scriptUrl, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors'
+        });
+
+        contactForm.reset();
+        btnText.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+        
+        showAlert('✓ Message sent successfully! I\'ll respond within 24 hours.', 'success');
+      } catch (error) {
+        console.error('Error:', error);
+        btnText.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+        submitBtn.disabled = false;
+        showAlert('Error sending message. Please try again.', 'error');
+      }
+    });
+
+    function showAlert(message, type) {
+      formAlert.textContent = message;
+      formAlert.className = `alert alert-${type} show`;
+      
+      setTimeout(() => {
+        formAlert.classList.remove('show');
+      }, 5000);
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    // Scroll reveal animation
+    const revealElements = document.querySelectorAll('.reveal');
+    
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ===== Prevent ALL content from being overwritten =====
+const elementsToProtect = {
+  'hero-name': document.getElementById('hero-name')?.innerHTML,
+  'hero-title': document.getElementById('hero-title')?.textContent,
+  'hero-description': document.getElementById('hero-description')?.textContent,
+  'about-text': document.getElementById('about-text')?.textContent
+};
+
+// Override the SDK's applyConfig function
+const originalApplyConfig = applyConfig;
+applyConfig = function() {
+  // Call original function first
+  originalApplyConfig.call(this);
+  
+  // Restore ALL our original content after SDK tries to overwrite
+  setTimeout(() => {
+    // Restore hero name (with gradient span)
+    const heroNameEl = document.getElementById('hero-name');
+    if (heroNameEl && elementsToProtect['hero-name']) {
+      heroNameEl.innerHTML = elementsToProtect['hero-name'];
+    }
+    
+    // Restore hero title
+    const heroTitleEl = document.getElementById('hero-title');
+    if (heroTitleEl && elementsToProtect['hero-title']) {
+      heroTitleEl.textContent = elementsToProtect['hero-title'];
+    }
+    
+    // Restore hero description
+    const heroDescEl = document.getElementById('hero-description');
+    if (heroDescEl && elementsToProtect['hero-description']) {
+      heroDescEl.textContent = elementsToProtect['hero-description'];
+    }
+    
+    // Restore about text
+    const aboutTextEl = document.getElementById('about-text');
+    if (aboutTextEl && elementsToProtect['about-text']) {
+      aboutTextEl.textContent = elementsToProtect['about-text'];
+    }
+    
+    console.log("✅ All content restored successfully!");
+  }, 100); // Small delay to ensure SDK finishes
+};
+
+// Also prevent initial config from overwriting
+if (window.elementSdk) {
+  // Override the SDK's init method
+  const originalInit = window.elementSdk.init;
+  window.elementSdk.init = function(config) {
+    // Call original but don't apply config immediately
+    const result = originalInit.call(this, config);
+    return result;
+  };
+}
+// ===== END COMPLETE FIX =====
+
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ca020996604a751',t:'MTc3MDQzODM2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
